@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <p>Масеньний бложечек о книжечках </p>
+    <a href="{% url 'picture_list'  %}">Галерея</a>
+    {% for post in object_list %}
+        <div>
+        <p>{{ post.published_date }}</p>
+        <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+        <p>{{ post.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+    <div class = "container">
+      <div class = "col-md-6">
+        <ul class="pager">
+          <span class="step-links">
+            {% if object_list.has_previous %}
+            <li class="previous"> <a href="?page={{ object_list.previous_page_number }}">Предыдущая страница</a></li>
+            {% else %}
+            <li class="previous"> <a title = "No Posts available">Предыдущая страница</a></li>
+            {% endif %}
+            {% if object_list.has_next %}
+            <li class="next"><a href="?page={{ object_list.next_page_number }}">Следующая страница</a></li>
+            {% else %}
+            <li class="next"><a title = "No Posts available">Следующая страница</a></li>
+            {% endif %}
+            </span>
+         </ul>
+      </div>
+    </div>
+{% endblock %}

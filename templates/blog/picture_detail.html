@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="picture">
+        {% if picture.published_date %}
+            <div class="date">
+                {{ picture.published_date }}
+            
+            </div>
+        {% endif %}
+
+        <h1>{{ picture.name }}</h1>
+    <img src="{{ picture.picture.url}}" alt="{{ picture.name }}">
+
+    </div>
+{% endblock %}
